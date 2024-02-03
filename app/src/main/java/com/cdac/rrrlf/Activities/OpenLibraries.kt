@@ -80,17 +80,13 @@ class OpenLibraries : AppCompatActivity() {
 
                         filteredLibraries?.let {
                             if (it.isEmpty()) {
-                                Handler().postDelayed({
-                                    progressBar2.visibility = View.VISIBLE
-                                    progressBar.visibility = View.GONE
-                                }, 2000)
+                                progressBar2.visibility = View.VISIBLE
+                                progressBar.visibility = View.GONE
                             } else {
                                 // Data is not empty, proceed with setting up the adapter
                                 val libraryAdapter = LibraryAdapter(this@OpenLibraries, it)
-                                Handler().postDelayed({
-                                    librariesRecyclerView.adapter = libraryAdapter
-                                    progressBar.visibility = View.GONE
-                                }, 2000)
+                                librariesRecyclerView.adapter = libraryAdapter
+                                progressBar.visibility = View.GONE
 
                             }
                         }

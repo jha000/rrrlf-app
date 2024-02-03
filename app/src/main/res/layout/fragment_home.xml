@@ -53,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="location"
+                    android:fontFamily="@font/opensans_regular"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textFontWeight="600"
@@ -66,6 +67,7 @@
                     android:layout_marginStart="10dp"
                     android:alpha="0.5"
                     android:text="postal code"
+                    android:fontFamily="@font/opensans_light"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
@@ -105,6 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/opensans_regular"
                     android:layout_weight="1"
                     android:text="Raja Ram Mohan Roy Library Foundation"
                     android:textAllCaps="true"
@@ -152,41 +155,157 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:layout_gravity="center_vertical"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/banner"
-                    tools:ignore="ContentDescription" />
-
-                <LinearLayout
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_view_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="10dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!--Image view for displaying our image-->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="#f0f0f0" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/circle"
+                                android:padding="8dp"
+                                android:src="@drawable/info"
+                                app:tint="@color/white"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="8dp"
+                                android:fontFamily="@font/opensans_bold"
+                                android:text="Library Statistics"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@color/grey" />
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <AutoCompleteTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/greyrectangle"
+                                android:inputType="none"
+                                android:fontFamily="@font/opensans_regular"
+                                android:text="Select State"
+                                android:textColor="@color/black" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <AutoCompleteTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/greyrectangle"
+                                android:inputType="none"
+                                android:fontFamily="@font/opensans_regular"
+                                android:text="2023-2024"
+                                android:textColor="@color/black" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/rectangle"
+                            android:backgroundTint="@color/red"
+                            android:gravity="center"
+                            android:fontFamily="@font/opensans_extrabold"
+                            android:padding="16dp"
+                            android:text="Continue"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/mainLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
 
                     >
 
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/loading"
+                    <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        app:lottie_autoPlay="true"
-                        android:visibility="visible"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/loadinghome"/>
+                        android:layout_height="180dp"
+                        android:layout_gravity="center_vertical"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/banner"
+                        tools:ignore="ContentDescription" />
+
 
                     <LinearLayout
-                        android:id="@+id/mainLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="16dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -210,6 +329,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="8dp"
+                                android:fontFamily="@font/opensans_bold"
                                 android:text="Library Statistics"
                                 android:textColor="@color/black"
                                 android:textSize="20sp" />
@@ -237,6 +357,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/greyrectangle"
                                 android:inputType="none"
+                                android:fontFamily="@font/opensans_regular"
                                 android:text="Select State"
                                 android:textColor="@color/black" />
 
@@ -258,6 +379,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/greyrectangle"
                                 android:inputType="none"
+                                android:fontFamily="@font/opensans_regular"
                                 android:text="2023-2024"
                                 android:textColor="@color/black" />
 
@@ -270,7 +392,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:orientation="vertical"
-                            android:visibility="visible">
+                            android:visibility="gone">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -281,6 +403,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Select District in "
+                                    android:fontFamily="@font/opensans_bold"
                                     android:textColor="@color/black"
                                     android:textSize="14sp" />
 
@@ -289,6 +412,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=""
+                                    android:fontFamily="@font/opensans_bold"
                                     android:textColor="@color/black"
                                     android:textSize="14sp" />
 
@@ -296,6 +420,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=" *"
+                                    android:fontFamily="@font/opensans_bold"
                                     android:textColor="@color/black"
                                     android:textSize="14sp" />
 
@@ -323,6 +448,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Search District..."
+                                    android:fontFamily="@font/opensans_regular"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
                                     android:textStyle="normal" />
@@ -332,22 +458,32 @@
 
                         </LinearLayout>
 
+                        <TextView
+                            android:id="@+id/view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/rectangle"
+                            android:backgroundTint="@color/red"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:fontFamily="@font/opensans_extrabold"
+                            android:text="Continue"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="10dp"
+                            android:visibility="gone" />
+
                     </LinearLayout>
-
-
-                    <TextView
-                        android:id="@+id/view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
-                        android:background="@drawable/rectangle"
-                        android:gravity="center"
-                        android:padding="16dp"
-                        android:text="View Libraries"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
 
 
                 </LinearLayout>

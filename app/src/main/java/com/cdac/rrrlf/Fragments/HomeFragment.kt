@@ -13,6 +13,7 @@ import android.location.Address
 import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -21,6 +22,7 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.os.postDelayed
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
@@ -28,6 +30,7 @@ import com.cdac.rrrlf.Data.District
 import com.cdac.rrrlf.Activities.OpenLibraries
 import com.cdac.rrrlf.R
 import com.cdac.rrrlf.Services.ApiService
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.Dispatchers
@@ -68,8 +71,8 @@ class HomeFragment : Fragment() {
     lateinit var mainLayout: LinearLayout
     lateinit var autoCompleteFY: AutoCompleteTextView
     lateinit var autocompleteState: AutoCompleteTextView
-
-    lateinit var loading: LottieAnimationView
+    lateinit var shimmerLayout: ShimmerFrameLayout
+    lateinit var progressBar: ProgressBar
 
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreateView(
@@ -94,13 +97,12 @@ class HomeFragment : Fragment() {
 
         getLastLocation()
 
-        showState()
-
-        loading = view.findViewById(R.id.loading)
         autocompleteState = view.findViewById(R.id.autoCompleteTextView)
         autoCompleteFY = view.findViewById(R.id.autoCompleteFY)
         layout = view.findViewById(R.id.layout)
         mainLayout = view.findViewById(R.id.mainLayout)
+        shimmerLayout = view.findViewById(R.id.shimmer_view_container)
+        progressBar = view.findViewById(R.id.progressBar)
 
         state = view.findViewById(R.id.state)
         district = view.findViewById(R.id.district)
@@ -109,40 +111,58 @@ class HomeFragment : Fragment() {
         state.text = selectedStateName
         district.text = selectedDistrict
 
-        if (state.text.isNullOrBlank()) {
-            layout.alpha = 0.3f
-        }
+        shimmerLayout.startShimmer();
 
-        if (district.text.isNullOrBlank()) {
-            open.alpha = 0.5f
-        }
+//        if (state.text.isNullOrBlank()) {
+//            layout.alpha = 0.3f
+//        }
 
-        layout.setOnClickListener {
-            if (state.text.isNullOrBlank()) {
-                Toast.makeText(activity, "Please Select State", Toast.LENGTH_SHORT).show()
-            }
-        }
+//        if (state.text.isNullOrBlank()) {
+//            open.alpha = 0.5f
+//        }
 
+//        layout.setOnClickListener {
+//            if (state.text.isNullOrBlank()) {
+//                Toast.makeText(activity, "Please Select State", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+
+        showState()
 
 
         open.setOnClickListener {
-            if (district.text.isNullOrBlank()) {
-                Toast.makeText(activity, "Please select all fields", Toast.LENGTH_SHORT).show()
-            } else {
-                val intent = Intent(activity, OpenLibraries::class.java)
-                intent.putExtra("DISTRICT_ID", selectedDistrictId.toString())
-                intent.putExtra("STATE_ID", selectedStateId.toString())
-                intent.putExtra("STATE", selectedStateName)
-                intent.putExtra("DISTRICT", selectedDistrict)
-                intent.putExtra("FY", selectedDistrict)
 
-                // Pass the matchingBeneficiaryIds array to the next screen
-                intent.putExtra("BENEFICIARY_IDS", matchingBeneficiaryIds.toIntArray())
+            if (open.text == "Continue") {
+                if (state.text.isNullOrBlank()) {
+                    Toast.makeText(activity, "Please select state", Toast.LENGTH_SHORT).show()
+                } else {
+                    progressBar.visibility = View.VISIBLE
+                    open.visibility = View.GONE
+                    Handler().postDelayed({
+                        progressBar.visibility = View.GONE
+                        open.visibility = View.VISIBLE
+                        layout.visibility = View.VISIBLE
+                        open.text = "View Libraries"
+                    }, 1000)
+                }
+            } else if (open.text == "View Libraries") {
+                if (district.text.isNullOrBlank()) {
+                    Toast.makeText(activity, "Please select district", Toast.LENGTH_SHORT).show()
+                } else {
+                    val intent = Intent(activity, OpenLibraries::class.java)
+                    intent.putExtra("DISTRICT_ID", selectedDistrictId.toString())
+                    intent.putExtra("STATE_ID", selectedStateId.toString())
+                    intent.putExtra("STATE", selectedStateName)
+                    intent.putExtra("DISTRICT", selectedDistrict)
+                    intent.putExtra("FY", selectedDistrict)
 
-                startActivity(intent)
+                    // Pass the matchingBeneficiaryIds array to the next screen
+                    intent.putExtra("BENEFICIARY_IDS", matchingBeneficiaryIds.toIntArray())
+
+                    startActivity(intent)
+                }
             }
         }
-
 
 
         val financial_year = resources.getStringArray(R.array.financial_year)
@@ -231,7 +251,8 @@ class HomeFragment : Fragment() {
                 )
                 autocompleteState.setAdapter(arrayAdapter)
 
-                loading.visibility = View.GONE
+                shimmerLayout.stopShimmer();
+                shimmerLayout.visibility = View.GONE
                 mainLayout.visibility = View.VISIBLE
 
                 autocompleteState.setOnItemClickListener { _, _, position, _ ->
@@ -244,7 +265,6 @@ class HomeFragment : Fragment() {
                     district.text = selectedDistrict
 
                     checkState()
-
 
 
                 }
@@ -264,7 +284,8 @@ class HomeFragment : Fragment() {
                 val allData = apiService.getAllData()
 
                 // Extract financial year and state id from the fetched data
-                val financialYear = selectedFinancialYear // Replace with the actual selected financial year
+                val financialYear =
+                    selectedFinancialYear // Replace with the actual selected financial year
                 val stateId = selectedStateId // Replace with the actual selected state id
 
                 // Find all matching entries in the data
@@ -275,20 +296,23 @@ class HomeFragment : Fragment() {
                 // Collect beneficiary_id values for matching entries into an array
                 matchingBeneficiaryIds = matchingEntries.map { it.beneficiary_id }
 
+                layout.alpha = 1.0f
+                showDistrictDialog()
+
                 // If at least one matching entry is found, set the alpha of the layout to 1
-                if (matchingBeneficiaryIds.isNotEmpty()) {
-                    layout.alpha = 1.0f
-                    showDistrictDialog()
-
-                    // Pass matchingBeneficiaryIds to the next screen using Intent or ViewModel
-                    // Example: startActivity(intent.putExtra("beneficiaryIds", matchingBeneficiaryIds.toIntArray()))
-
-                } else {
-                    layout.alpha = 0.3f
-                    layout.setOnClickListener {
-                        showNoBeneficiaryDialog()
-                    }
-                }
+//                if (matchingBeneficiaryIds.isNotEmpty()) {
+//                    layout.alpha = 1.0f
+//                    showDistrictDialog()
+//
+//                    // Pass matchingBeneficiaryIds to the next screen using Intent or ViewModel
+//                    // Example: startActivity(intent.putExtra("beneficiaryIds", matchingBeneficiaryIds.toIntArray()))
+//
+//                } else {
+//                    layout.alpha = 0.3f
+//                    layout.setOnClickListener {
+//                        showNoBeneficiaryDialog()
+//                    }
+//                }
 
             } catch (e: Exception) {
                 Log.e("APIError", "Error fetching data", e)
@@ -387,9 +411,9 @@ class HomeFragment : Fragment() {
                             selectedDistrict = filteredDistricts[position].district_name
                             district.text = selectedDistrict
 
-                            if (!district.text.isNullOrBlank()) {
-                                open.alpha = 1.0f
-                            }
+//                            if (!district.text.isNullOrBlank()) {
+//                                open.alpha = 1.0f
+//                            }
                             // Handle the selected district as needed
 
                             // Dismiss dialog
