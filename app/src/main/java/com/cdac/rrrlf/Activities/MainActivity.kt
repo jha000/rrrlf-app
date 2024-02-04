@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, Dashboard::class.java)
             startActivity(intent)
             finish() // close the splash activity to prevent it from showing when pressing the back button
-        }, 2000) // 2000 milliseconds (adjust as needed)
+        }, 1000) // 2000 milliseconds (adjust as needed)
 
     }
 }

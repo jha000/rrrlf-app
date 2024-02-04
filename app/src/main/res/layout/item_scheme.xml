@@ -12,9 +12,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:elevation="2dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/box1"
+        android:elevation="2dp"
         android:orientation="vertical">
 
         <TextView
@@ -27,19 +27,19 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/status"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:padding="16dp"
-                android:textStyle="bold"
-                android:textAllCaps="true"
-                android:background="#f7cb73"
-                android:text="Pending"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f7cb73"
+            android:fontFamily="@font/opensans_extrabold"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Pending"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
 
         <LinearLayout
@@ -49,32 +49,33 @@
             android:layout_margin="16dp"
             android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Scheme Name "
-                    android:textColor="@color/black"
-                    android:alpha="0.5"
-                    android:textSize="12sp"
-                    android:textStyle="normal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/opensans_light"
+                android:text="Scheme Name "
+                android:textColor="@color/black"
 
-                <TextView
-                    android:id="@+id/scheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/scheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/opensans_bold"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:alpha="0.1"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/bac"
-                />
+                android:alpha="0.1"
+                android:background="@color/bac" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -85,10 +86,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Applied Amount: "
-                    android:layout_weight="1"
                     android:layout_marginRight="8dp"
-                    android:alpha="0.5"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_light"
+                    android:text="Applied Amount: "
+
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal" />
@@ -96,6 +98,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text="₹"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -105,6 +108,7 @@
                     android:id="@+id/applied_Amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="16dp"
@@ -113,6 +117,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text="/-"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -129,17 +134,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Applied GST: "
-                    android:layout_weight="1"
                     android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_light"
+                    android:text="Applied GST: "
                     android:textColor="@color/black"
-                    android:alpha="0.5"
+
                     android:textSize="14sp"
                     android:textStyle="normal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text="₹"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -149,6 +156,7 @@
                     android:id="@+id/applied_gst"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="16dp"
@@ -157,6 +165,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text="/-"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -173,17 +182,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_light"
                     android:text="Recommended Amount: "
                     android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:layout_marginRight="8dp"
                     android:textSize="14sp"
-                    android:alpha="0.5"
+
                     android:textStyle="normal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text="₹"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -193,6 +204,7 @@
                     android:id="@+id/recommended_Amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="16dp"
@@ -201,6 +213,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text="/-"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -216,17 +229,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_light"
                     android:text="Recommended GST: "
                     android:textColor="@color/black"
-                    android:alpha="0.5"
-                    android:layout_weight="1"
-                    android:layout_marginRight="8dp"
                     android:textSize="14sp"
                     android:textStyle="normal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text="₹"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -236,6 +250,7 @@
                     android:id="@+id/recommended_GST"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="16dp"
@@ -244,6 +259,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:text="/-"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -254,28 +270,27 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:alpha="0.1"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/bac"
-                />
+                android:alpha="0.1"
+                android:background="@color/bac" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="8dp"
+
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_light"
                     android:text="Total Santioned Amount"
                     android:textColor="@color/black"
-                    android:alpha="0.5"
-                    android:layout_marginRight="8dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
                     android:textSize="12sp"
                     android:textStyle="normal" />
 
@@ -288,6 +303,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_bold"
                         android:text="₹"
                         android:textColor="@color/blue"
                         android:textSize="20sp"
@@ -297,6 +313,7 @@
                         android:id="@+id/total_Amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_bold"
                         android:text=""
                         android:textColor="@color/blue"
                         android:textSize="20sp"
@@ -305,6 +322,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_bold"
                         android:text="/-"
                         android:textColor="@color/blue"
                         android:textSize="20sp"
@@ -322,13 +340,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_light"
                     android:text="Total Santioned GST"
                     android:textColor="@color/black"
                     android:textSize="12sp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:layout_marginRight="8dp"
-                    android:alpha="0.5"
+
                     android:textStyle="normal" />
 
                 <LinearLayout
@@ -339,6 +358,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_bold"
                         android:text="₹"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -348,6 +368,7 @@
                         android:id="@+id/total_GST"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_bold"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="16dp"
@@ -356,6 +377,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_bold"
                         android:text="/-"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -364,7 +386,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
 
 
         </LinearLayout>

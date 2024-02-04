@@ -23,6 +23,7 @@
 
             <ImageView
                 android:id="@+id/back"
+                android:layout_marginRight="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -35,9 +36,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="left"
+                android:fontFamily="@font/opensans_regular"
                 android:text="All Libraries in "
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -46,9 +48,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="left"
+                android:fontFamily="@font/opensans_regular"
                 android:text="district"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -56,9 +59,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="left"
+                android:fontFamily="@font/opensans_regular"
                 android:text=", "
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -67,10 +71,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="left"
+                android:fontFamily="@font/opensans_regular"
                 android:maxLines="1"
                 android:text="Kolkata"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -83,6 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:visibility="visible"
         android:orientation="horizontal"
         tools:listitem="@layout/item_libraries" />
 
@@ -123,7 +129,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="no data found"
+            android:fontFamily="@font/opensans_bold"
+            android:text="No Beneficiary Found"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
